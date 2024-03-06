@@ -11,5 +11,5 @@ angular.module('userMang', [
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('');
 
-  $routeProvider.otherwise({redirectTo: 'js/list/list.html'});
+  $routeProvider.otherwise({redirectTo: '/list'});
 }]);
