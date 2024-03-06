@@ -9,12 +9,9 @@ angular.module('userMang.details', ['ngRoute'])
   });
 }])
 
-.controller('detailsCtrl', ['$scope','$http','$routeParams', function($http, $routeParams, $scope) {
+.controller('detailsCtrl', ['$scope','users','$routeParams', function(users, $routeParams, $scope) {
   var userId = $routeParams.id;
-  $http.get('https://reqres.in/api/users/' + userId)
-    .success(function(data) {
-      $scope.user = data;
-    }).error(function(err) {
-      return err;
-    });
+  users.then(function(data) {
+    $scope.user = data[userId];
+  })
     }]);

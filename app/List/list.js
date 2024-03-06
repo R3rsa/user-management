@@ -4,18 +4,18 @@ angular.module('userMang.list', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/list', {
-    templateUrl: '/list.html',
-    controller: 'ListCtrl'
+    controller: 'ListCtrl',
+    templateUrl: 'List/list.html'
   });
 }])
 
-.controller('ListCtrl', ['$http','$scope', '$location', function($http, $location, $scope) {
-  $http.get('https://reqres.in/api/users')
-    .success(function(data) {
-      $scope.users = data;
-    }).error(function(err) {
-      return err;
-    });
+.controller('ListCtrl', ['users','$scope', '$location', function(users,$scope, $location) {
+
+
+  users.then(function(response) {
+    $scope.userList= response.data;
+    console.log($scope.userList);
+  });
   $scope.viewDetails = function(userId) {
     $location.path('/details/' + userId);
   }

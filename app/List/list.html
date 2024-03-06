@@ -1,3 +1,3 @@
-<div ng-repeat="user in users" ng-click="viewDetails(user.id)">
-    <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
+<div ng-repeat="item in userList" userDetails()>
+    <h3>Name: {{item.first_name}} {{item.last_name}}</h3>
 </div>

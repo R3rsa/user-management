@@ -1,7 +1,7 @@
-'use strict';
+
 
 // Declare app level module which depends on views, and core components
-angular.module('userMang', [
+var app = angular.module('userMang', [
   'ngRoute',
   'userMang.list',
   'userMang.details',
