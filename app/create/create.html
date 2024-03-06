@@ -1,0 +1,14 @@
+<div>
+    <h1>Create a user</h1>
+    <form ng-submit="createUser()" enctype="multipart/form-data">
+        <label>First name: </label>
+        <input type="text" ng-model="first_name" required>
+        <label>Last name: </label>
+        <input type="text" ng-model="last_name" required>
+        <label>Email address: </label>
+        <input type="email" ng-model="email" required>
+        <label>Avatar image: </label>
+        <input type="file" ng-model="avatar">
+        <button type="submit">Submit</button>
+    </form>
+</div>
