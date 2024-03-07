@@ -8,14 +8,19 @@ angular.module('userMang.list', ['ngRoute'])
 }])
 
 .controller('ListCtrl', ['users','$scope', '$location', function(users, $scope, $location) {
+  
+  // $scope.currentPage = 1;
 
-
-  users.then(function(response) {
-    $scope.userList= response.data;
+  users.then(function(data) {
+    $scope.userList = data;
   });
+
+  
+  //defining a function to pass the user id with the path to redirect to details page
   $scope.viewDetails = function(userId) {
     $location.path('/details/' + userId);
   }
+  //defining a function to redirect to create page
   $scope.redirectToCreate = function() {
     $location.path('/create');
   }

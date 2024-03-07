@@ -1,6 +1,4 @@
 <div ng-repeat="user in userList" ng-click="viewDetails(user.id)">
-    <!-- <a href="/create"> -->
         <h3>{{user.id}}: {{user.first_name}} {{user.last_name}}</h3>
-    <!-- </a> -->
 </div>
 <button ng-click="redirectToCreate()">Create a User</button>

@@ -9,10 +9,10 @@ angular.module('userMang.details', ['ngRoute'])
 
 .controller('detailsCtrl', ['users','$scope','$routeParams', function(users, $scope, $routeParams) {
   var userId = $routeParams.id;
-  console.log('userId', userId);
 
-  users.then(function(response) {
-    $scope.user = response.data[userId - 1];
-    console.log($scope.user);
+  users.then(function(data) {
+    $scope.user = data.find(function(user) {
+      return user.id == userId;
+    });
   });
 }]);
