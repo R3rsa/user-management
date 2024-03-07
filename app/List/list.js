@@ -1,11 +1,9 @@
-'use strict';
-
 angular.module('userMang.list', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/list', {
     controller: 'ListCtrl',
-    templateUrl: 'List/list.html'
+    templateUrl: 'list/list.html'
   });
 }])
 
@@ -14,9 +12,11 @@ angular.module('userMang.list', ['ngRoute'])
 
   users.then(function(response) {
     $scope.userList= response.data;
-
   });
   $scope.viewDetails = function(userId) {
     $location.path('/details/' + userId);
+  }
+  $scope.redirectToCreate = function() {
+    $location.path('/create');
   }
 }]);

@@ -7,11 +7,12 @@ angular.module('userMang.details', ['ngRoute'])
   });
 }])
 
-.controller('detailsCtrl', ['$scope','users','$routeParams', function(users, $scope, $routeParams) {
+.controller('detailsCtrl', ['users','$scope','$routeParams', function(users, $scope, $routeParams) {
   var userId = $routeParams.id;
   console.log('userId', userId);
-  users.then(function(data) {
-    $scope.user = data[userId];
+
+  users.then(function(response) {
+    $scope.user = response.data[userId - 1];
     console.log($scope.user);
-  })
-    }]);
+  });
+}]);

@@ -26,7 +26,7 @@ angular.module('userMang.create', ['ngRoute'])
         'Content-Type': undefined
       }
     })
-      .then(function(response) {
+      .then(function() {
         console.log('User created successfully');
         // Redirect to list page after successful creation
         window.location.href = '#/list';
