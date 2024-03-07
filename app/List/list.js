@@ -9,12 +9,12 @@ angular.module('userMang.list', ['ngRoute'])
   });
 }])
 
-.controller('ListCtrl', ['users','$scope', '$location', function(users,$scope, $location) {
+.controller('ListCtrl', ['users','$scope', '$location', function(users, $scope, $location) {
 
 
   users.then(function(response) {
     $scope.userList= response.data;
-    console.log($scope.userList);
+
   });
   $scope.viewDetails = function(userId) {
     $location.path('/details/' + userId);
