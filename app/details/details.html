@@ -1,5 +1,27 @@
+<div ng-show="loading">Loading...</div>
+<div ng-show="error" style="color: red;">{{error}}</div>
+
 <div>
-  <!-- <img ng-src="{{user.avatar}}"> -->
+  <img ng-src="{{user.avatar}}">
   <h1>{{user.first_name}} {{user.last_name}}</h1>
   <p>{{user.email}}</p>
+  <button ng-click="editUser(user.id)">Edit</button>
+  <button ng-click="deleteUser(user.id)">Delete</button>
+</div>
+
+<!-- Edit User Modal -->
+<div class="modal" ng-show="showEditModal">
+  <div class="modal-content">
+      <h2>Edit User</h2>
+      <form ng-submit="saveEditedUser()">
+          <label>First name:</label>
+          <input type="text" ng-model="editedUser.first_name" required><br>
+          <label>Last name:</label>
+          <input type="text" ng-model="editedUser.last_name" required><br>
+          <label>Email:</label>
+          <input type="email" ng-model="editedUser.email" required><br>
+          <button type="submit">Save</button>
+          <button ng-click="closeEditModal()">Cancel</button>
+      </form>
+  </div>
 </div>

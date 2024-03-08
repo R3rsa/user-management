@@ -7,21 +7,21 @@ angular.module('userMang.create', ['ngRoute'])
   });
 }])
 
-.controller('CreateCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+.controller('CreateCtrl', ['createUser','$scope', '$http', '$location', function(createUser, $scope, $http, $location) {
   $scope.createUser = function() {
     var userData = {
       first_name: $scope.first_name,
       last_name: $scope.last_name,
       email: $scope.email
     };
-    console.log(userData);
+
     $http.post('https://reqres.in/api/users', userData)
       .then(function() {
-        console.log('User created successfully');
-        // Redirect to list page after successful creation
-        $location.path('/list');
-      }, function(error) {
+        createUser.success = true;
+        $location.path('/list'); // Redirect to list page after successful creation
+      }).catch(function(error) {
         console.log(error);
+        //need to check error handling here
       });
   };
 }]);

@@ -7,12 +7,69 @@ angular.module('userMang.details', ['ngRoute'])
   });
 }])
 
-.controller('detailsCtrl', ['users','$scope','$routeParams', function(users, $scope, $routeParams) {
+.controller('detailsCtrl', ['users', 'deleteStatus', '$scope','$routeParams','$location', function(users, deleteStatus, $scope, $routeParams, $location) {
   var userId = $routeParams.id;
 
-  users.then(function(data) {
-    $scope.user = data.find(function(user) {
-      return user.id == userId;
-    });
+  //Show loading and error if exist
+  $scope.loading = false;
+  $scope.error = '';
+  
+  //display user details by his id
+  users.getById(userId).then(function(userDetails) {
+    $scope.user = userDetails.data.data;
+  })
+  .catch(function(error) {
+    $scope.error = 'Failed to load user details. Please try again.';
+    console.log(error);
   });
+  
+  $scope.deleteUser = function() {
+    var confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if(confirmDelete) {
+      users.delete(userId).then(function() {
+        console.log('user deleted successfully!');
+        deleteStatus.success = true;
+        $location.path('/list');
+      })
+      .catch(function(error) {
+        $scope.error = 'Failed to delete the user. Please try again.';
+        console.log(error);
+      });
+    }
+  }
+
+  //Hide the edit modal until edit button is pressed
+  $scope.showEditModal = false;
+  $scope.editedUser = {};
+
+  $scope.editUser = function() {
+
+    //show page loading while edit form is off
+    $scope.loading = true;
+    $scope.editedUser = angular.copy($scope.user);
+    $scope.showEditModal = true;
+    $scope.loading = false;
+  };
+
+  
+  $scope.saveEditedUser = function() {
+    users.update(userId, $scope.editedUser).then(function() {
+      $scope.loading = true;
+      $scope.user.first_name = $scope.editedUser.first_name;
+      $scope.user.last_name = $scope.editedUser.last_name;
+      $scope.user.email = $scope.editedUser.email;
+      $scope.loading = false;
+      console.log("user updated!");
+      $scope.closeEditModal();
+    })
+    .catch(function(error) {
+      $scope.error = 'Failed to update user. Please try again.';
+      console.log(error);
+    });
+  };
+
+  $scope.closeEditModal = function() {
+    $scope.showEditModal = false;
+  };
+
 }]);

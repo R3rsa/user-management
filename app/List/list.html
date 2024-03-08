@@ -1,3 +1,9 @@
+<div ng-if="showDeleteSuccessBanner" class="banner">
+        User deleted successfully!
+</div>
+<div ng-if="showUserCreationSuccessBanner" class="banner">
+        User created successfully!
+</div>
 <div ng-repeat="user in userList" ng-click="viewDetails(user.id)">
         <h3>{{user.id}}: {{user.first_name}} {{user.last_name}}</h3>
 </div>
