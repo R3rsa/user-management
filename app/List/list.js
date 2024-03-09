@@ -40,7 +40,7 @@ angular.module('userMang.list', ['ngRoute'])
     $location.path('/details/' + userId);
   }
   //defining a function to redirect to create page
-  $scope.redirectToCreate = function() {
-    $location.path('/create');
-  }
+  // $scope.redirectToCreate = function() {
+  //   $location.path('/create');
+  // }
 }]);

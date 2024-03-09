@@ -1,27 +1,57 @@
 <div ng-show="loading">Loading...</div>
 <div ng-show="error" style="color: red;">{{error}}</div>
 
-<div>
+<div class="modal-content">
   <img ng-src="{{user.avatar}}">
-  <h1>{{user.first_name}} {{user.last_name}}</h1>
-  <p>{{user.email}}</p>
-  <button ng-click="editUser(user.id)">Edit</button>
-  <button ng-click="deleteUser(user.id)">Delete</button>
+  <p>First Name: {{user.first_name}}</p>
+  <p>Last Name:  {{user.last_name}}</p>
+  <p>Email: {{user.email}}</p>
+  <button ng-click="editUser(user.id)" class="pointer">Edit</button>
+  <button ng-click="deleteUser(user.id)" class="pointer">Delete</button>
 </div>
 
 <!-- Edit User Modal -->
-<div class="modal" ng-show="showEditModal">
+<div class="modal" ng-show="showEditModal" >
   <div class="modal-content">
       <h2>Edit User</h2>
       <form ng-submit="saveEditedUser()">
-          <label>First name:</label>
-          <input type="text" ng-model="editedUser.first_name" required><br>
-          <label>Last name:</label>
-          <input type="text" ng-model="editedUser.last_name" required><br>
-          <label>Email:</label>
-          <input type="email" ng-model="editedUser.email" required><br>
-          <button type="submit">Save</button>
-          <button ng-click="closeEditModal()">Cancel</button>
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">First Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="fname" ng-model="editedUser.first_name" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Last Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="lname" ng-model="editedUser.last_name" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="email">Email</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="email" ng-model="editedUser.email" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="avatar">Avatar</label>
+          </div>
+          <div class="col-75">
+            <input type="file" id="avatar" ng-model="editedUser.avatar" accept=".png, .jpeg, .jpg">
+            <img ng-src="{{editedUser.avatar}}" >
+          </div>
+        </div>
+        <div class="row edit-btns">
+          <button type="submit" class="pointer">Save</button>
+          <button ng-click="closeEditModal()" class="pointer">Cancel</button>
+        </div>
       </form>
   </div>
 </div>

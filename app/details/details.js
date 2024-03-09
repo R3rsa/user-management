@@ -27,7 +27,6 @@ angular.module('userMang.details', ['ngRoute'])
     var confirmDelete = window.confirm("Are you sure you want to delete this user?");
     if(confirmDelete) {
       users.delete(userId).then(function() {
-        console.log('user deleted successfully!');
         deleteStatus.success = true;
         $location.path('/list');
       })
@@ -45,19 +44,21 @@ angular.module('userMang.details', ['ngRoute'])
   $scope.editUser = function() {
 
     //show page loading while edit form is off
-    $scope.loading = true;
+    // $scope.loading = true;
     $scope.editedUser = angular.copy($scope.user);
     $scope.showEditModal = true;
-    $scope.loading = false;
+    console.log($scope.showEditModal);
   };
+  // $scope.loading = false;
+  console.log($scope.showEditModal);
 
-  
   $scope.saveEditedUser = function() {
     users.update(userId, $scope.editedUser).then(function() {
       $scope.loading = true;
       $scope.user.first_name = $scope.editedUser.first_name;
       $scope.user.last_name = $scope.editedUser.last_name;
       $scope.user.email = $scope.editedUser.email;
+      $scope.user.avatar = $scope.editedUser.avatar;
       $scope.loading = false;
       console.log("user updated!");
       $scope.closeEditModal();

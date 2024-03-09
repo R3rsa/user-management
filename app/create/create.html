@@ -1,14 +1,42 @@
-<div>
+<div class="modal-content">
     <h1>Create a user</h1>
     <form ng-submit="createUser()" enctype="multipart/form-data">
-        <label>First name: </label>
-        <input type="text" ng-model="first_name" required>
-        <label>Last name: </label>
-        <input type="text" ng-model="last_name" required>
-        <label>Email address: </label>
-        <input type="email" ng-model="email" required>
-        <label>Avatar image: </label>
-        <input type="file" ng-model="avatar">
-        <button type="submit">Submit</button>
+        <div class="row">
+            <div class="col-25">
+              <label for="fname">First Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="fname" ng-model="first_name" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Last Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="lname" ng-model="last_name" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="email">Email</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="email" ng-model="email" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="avatar">Avatar</label>
+            </div>
+            <div class="col-75">
+              <input type="file" id="avatar" class="pointer" ng-model="avatar" accept=".png, .jpeg, .jpg" onchange="angular.element(this).scope().fileChanged(this)">
+              <img ng-src="{{avatarSrc}}" >
+            </div>
+          </div>
+          <div class="row ">
+            <button type="submit" class="pointer">Create</button>
+            <button ng-click="cancelCreate()" class="pointer">Cancel</button>
+          </div>
     </form>
 </div>

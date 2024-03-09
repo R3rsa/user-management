@@ -1,0 +1,10 @@
+<nav class="navbar">
+    <div class="navbar-left">
+        <a ng-if="main.showBackButton()" ng-click="main.goBack()" class="backButton pointer">&lt;</a>
+      <span ng-click="main.redirectHome()" class="pointer">User Management</span>
+    </div>
+    <div class="navbar-right" ng-hide="main.hideCreateButton()">
+      <button ng-click="main.redirectToCreate()" class="pointer">Create User</button>
+    </div>
+  </nav>
+  

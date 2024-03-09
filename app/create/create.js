@@ -15,6 +15,8 @@ angular.module('userMang.create', ['ngRoute'])
       email: $scope.email
     };
 
+
+
     $http.post('https://reqres.in/api/users', userData)
       .then(function() {
         createUser.success = true;
@@ -23,5 +25,22 @@ angular.module('userMang.create', ['ngRoute'])
         console.log(error);
         //need to check error handling here
       });
+  };
+  $scope.cancelCreate = function() {
+    $location.path('/list');
+  };
+
+  $scope.avatarSrc = '';
+
+  $scope.fileChanged = function(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $scope.$apply(function() {
+          $scope.avatarSrc = e.target.result;
+        });
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   };
 }]);
