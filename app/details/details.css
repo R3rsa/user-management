@@ -1,0 +1,22 @@
+/* details page */
+.details {
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 20px;  
+}
+.details img{
+  padding: 9px;
+  border: 1px solid #ccc;
+}
+
+/* Modal container */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black with transparency */
+  animation: slideUp 0.2s ease-out forwards;
+}

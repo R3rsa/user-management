@@ -1,5 +1,3 @@
-
-
 // Declare app level module which depends on views, and core components
 var app = angular.module('userMang', [
   'ngRoute',
@@ -13,7 +11,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
   $routeProvider.otherwise({redirectTo: '/list'});
 }]).
-controller('MainCtrl', ['$scope','$location', function($scope, $location) {
+controller('MainCtrl', ['$location', function( $location) {
   this.redirectToCreate = function() {
     $location.path('/create');
   };

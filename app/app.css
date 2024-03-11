@@ -1,16 +1,6 @@
 /* app css stylesheet */
 
-/* Applying animaton for the banner */
-.banner {
-  background-color: rgb(57, 92, 126);
-  color: white;
-  text-align: center;
-  padding: 8px;
-  margin-bottom: 16px;
-  border-radius: 5px;
-  animation: slideUp 0.5s ease-out forwards, fadeOut 2s 1s forwards;
-}
-
+/* some animation for banners and modals */
 @keyframes slideUp {
   from {
     transform: translateY(-100%);
@@ -29,34 +19,12 @@
   }
 }
 
-/* details page */
-.details {
-  margin: 10% auto; /* 15% from the top and centered */
-  padding: 20px;  
-}
-.details img{
-  padding: 9px;
-  border: 1px solid #ccc;
-}
-
-/* Modal container */
-.modal {
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black with transparency */
-  animation: slideUp 0.2s ease-out forwards;
-}
-
 /* Modal content */
+/* for both details page and create page */
 .modal-content {
   background-color: #fefefe;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 6% auto; /* 15% from the top and centered */
+  margin: 6% auto; 
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
@@ -75,7 +43,6 @@
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  resize: vertical;
 }
 
 .modal-content label {
@@ -122,41 +89,8 @@
   }
 }
 
-
-/* Card container */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-/* Card */
-.card {
-  /* width: calc(50% - 20px); 50% width with margin */
-  cursor: pointer;
-  margin: 10px;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Card image */
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-/* Card title */
-.card h3 {
-  margin: 0;
-  font-size: 18px;
-}
-.card p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #666;
+img {
+  max-width: 100%;
 }
 
 .navbar {
@@ -168,6 +102,7 @@
   padding: 10px 20px;
 }
 
+/* taking up all the available space along the main axis and pushing navbar-right to far right */
 .navbar-left {
   flex: 1;
 }
@@ -176,6 +111,17 @@
   flex: 0 0 auto;
 }
 
+/* cross-pages buttons */
+button {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+button:hover {
+  background-color: #ddd;
+}
+
+/* styling for the back button in edit page */
 .backButton {
   font-style: italic;
   font-size: small;

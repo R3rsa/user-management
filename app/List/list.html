@@ -1,13 +1,23 @@
-<div ng-if="showDeleteSuccessBanner" class="banner">
+<div ng-if="showDeleteSuccessBanner" class="banner redBanner">
         User deleted successfully!
 </div>
-<div ng-if="showUserCreationSuccessBanner" class="banner">
+<div ng-if="showUserCreationSuccessBanner" class="banner blueBanner">
         User created successfully!
 </div>
 <div class="card-container">
-        <div ng-repeat="user in userList" ng-click="viewDetails(user.id)" class="card">
+        <div ng-repeat="user in filteredUserList" ng-click="viewDetails(user.id)" class="card">
                 <img ng-src="{{user.avatar}}" alt="user image">
                 <h3>{{user.first_name}} {{user.last_name}}</h3>
                 <p>Title </p>
         </div>
+</div>
+<div class="pagination">
+        <button ng-click="firstPage()">&lt;&lt;</button>
+        <button ng-click="prevPage()">&lt;</button>
+        <span>Page </span>
+        <!-- if input loses focus or enter is pressed -->
+        <input type="text" ng-model="currentPage" ng-blur="setPage(currentPage)" ng-keyup="$event.keyCode == 13 && setPage(currentPage)" >
+        <span> of {{totalPages}}</span>
+        <button ng-click="nextPage()">></button>
+        <button ng-click="lastPage()">>></button>
 </div>

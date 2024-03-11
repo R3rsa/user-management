@@ -9,29 +9,31 @@ angular.module('userMang.create', ['ngRoute'])
 
 .controller('CreateCtrl', ['createUser','$scope', '$http', '$location', function(createUser, $scope, $http, $location) {
   $scope.createUser = function() {
+    // saving user input
     var userData = {
       first_name: $scope.first_name,
       last_name: $scope.last_name,
       email: $scope.email
     };
-
-
+    $scope.error = '';
 
     $http.post('https://reqres.in/api/users', userData)
       .then(function() {
-        createUser.success = true;
+        createUser.success = true; //activating banner
         $location.path('/list'); // Redirect to list page after successful creation
       }).catch(function(error) {
+        $scope.error = 'error in creating a user!';
         console.log(error);
-        //need to check error handling here
       });
   };
+  
   $scope.cancelCreate = function() {
     $location.path('/list');
   };
 
   $scope.avatarSrc = '';
 
+  //displaying uploaded image
   $scope.fileChanged = function(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();

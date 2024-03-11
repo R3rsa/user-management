@@ -15,7 +15,8 @@ angular.module('userMang.details', ['ngRoute'])
   $scope.error = '';
   
   //display user details by his id
-  users.getById(userId).then(function(userDetails) {
+  users.getById(userId)
+  .then(function(userDetails) {
     $scope.user = userDetails.data.data;
   })
   .catch(function(error) {
@@ -44,12 +45,12 @@ angular.module('userMang.details', ['ngRoute'])
   $scope.editUser = function() {
 
     //show page loading while edit form is off
-    // $scope.loading = true;
+    $scope.loading = true;
     $scope.editedUser = angular.copy($scope.user);
     $scope.showEditModal = true;
     console.log($scope.showEditModal);
+    $scope.loading = false;
   };
-  // $scope.loading = false;
   console.log($scope.showEditModal);
 
   $scope.saveEditedUser = function() {
@@ -60,7 +61,6 @@ angular.module('userMang.details', ['ngRoute'])
       $scope.user.email = $scope.editedUser.email;
       $scope.user.avatar = $scope.editedUser.avatar;
       $scope.loading = false;
-      console.log("user updated!");
       $scope.closeEditModal();
     })
     .catch(function(error) {

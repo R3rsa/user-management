@@ -1,0 +1,85 @@
+/* Card container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+/* Card */
+.card {
+  width: 11.5%;
+  cursor: pointer;
+  margin: 2% 8% 1% 6%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card image */
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* user name in card */
+.card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+/* user title */
+.card p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+
+/* Pagination styling */
+.pagination {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #888;
+  bottom: 0;
+  background-color: #ffffff;
+  font-size: 85%;
+}
+
+.pagination input[type="text"] {
+  width: 1.8%;
+}
+
+.pagination button {
+margin: 0 5px;
+padding: 5px;
+border: none;
+cursor: pointer;
+width: 28px;
+
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
+
+/* Applying animaton for the banner */
+.banner {
+  position: absolute;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  animation: slideUp 0.5s ease-out forwards, fadeOut 2s 1s forwards;
+}
+.blueBanner {
+background-color: rgb(57, 92, 126);
+}
+.redBanner {
+background-color: rgb(223, 45, 22);
+}

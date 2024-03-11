@@ -1,3 +1,5 @@
+//making navbar cross-page
+
 angular.module('userMang').directive('navbar', function() {
     return {
       restrict: 'E',

@@ -1,3 +1,4 @@
+// making api requests to retrieve/delete/update users
 angular.module('userMang').factory('users', ['$http', function($http) {
     var service = {};
   
@@ -21,7 +22,8 @@ angular.module('userMang').factory('users', ['$http', function($http) {
 
         return getUsers(1);
     };
-  
+    
+    //retrieve a single user details
     service.getById = function(userId) {
       return $http.get('https://reqres.in/api/users/' + userId);
     };
