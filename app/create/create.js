@@ -7,7 +7,7 @@ angular.module('userMang.create', ['ngRoute'])
   });
 }])
 
-.controller('CreateCtrl', ['createUser','$scope', '$http', '$location', function(createUser, $scope, $http, $location) {
+.controller('CreateCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
   $scope.createUser = function() {
     // saving user input
     var userData = {
@@ -19,8 +19,7 @@ angular.module('userMang.create', ['ngRoute'])
 
     $http.post('https://reqres.in/api/users', userData)
       .then(function() {
-        createUser.success = true; //activating banner
-        $location.path('/list'); // Redirect to list page after successful creation
+        $location.path('/list').search('created','true'); // Redirect to list page after successful creation
         
       }).catch(function(error) {
         $scope.error = 'error in creating a user!';

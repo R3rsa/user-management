@@ -7,7 +7,7 @@ angular.module('userMang.details', ['ngRoute'])
   });
 }])
 
-.controller('detailsCtrl', ['users', 'deleteStatus', '$scope', '$routeParams','$location', function(users, deleteStatus, $scope, $routeParams, $location ) {
+.controller('detailsCtrl', ['users', '$scope', '$routeParams','$location', function(users, $scope, $routeParams, $location ) {
   var userId = $routeParams.id;
 
   //Show loading and error if exist
@@ -33,8 +33,7 @@ angular.module('userMang.details', ['ngRoute'])
     var confirmDelete = window.confirm("Are you sure you want to delete this user?");
     if(confirmDelete) {
       users.delete(userId).then(function() {
-        deleteStatus.success = true;
-        $location.path('/list');
+        $location.path('/list').search('deleted', 'true');
       })
       .catch(function(error) {
         $scope.error = 'Failed to delete the user. Please try again.';

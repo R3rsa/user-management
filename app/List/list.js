@@ -7,7 +7,7 @@ angular.module('userMang.list', ['ngRoute'])
   });
 }])
 
-.controller('ListCtrl', ['users', 'deleteStatus','createUser','$scope', '$location', '$timeout', function(users, deleteStatus,createUser, $scope, $location, $timeout) {
+.controller('ListCtrl', ['users','$scope', '$location', '$timeout', '$routeParams', function(users, $scope, $location, $timeout, $routeParams) {
   
   $scope.totalPages = 2;
   $scope.currentPage = 1;
@@ -24,24 +24,23 @@ angular.module('userMang.list', ['ngRoute'])
   });
 
   //Check if user was successfully deleted
-  if(deleteStatus.success) {
+  if($routeParams.deleted === 'true') {
     $scope.showDeleteSuccessBanner = true;
     //display banner for 2 seconds
     $timeout(function() {
         $scope.showDeleteSuccessBanner = false;
+        $location.search('deleted', null);
     }, 2000);
-    // toaster.success('Haffa', 'User deleted!');
-    deleteStatus.success = false; // so we make sure it is activated only when user is deleted
   }
 
   //Check if user was created successfully
-  if(createUser.success) {
+  if($routeParams.created === 'true') {
     $scope.showUserCreationSuccessBanner = true;
     //display banner for 2 seconds
     $timeout(function() {
         $scope.showUserCreationSuccessBanner = false;
+        $location.search('created', null);
     }, 2000);
-    createUser.success = false; //so we make sure it is activated only when user is created
   }
 
   //defining a function to pass the user id with the path to redirect to details page
