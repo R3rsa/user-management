@@ -7,12 +7,17 @@ angular.module('userMang.details', ['ngRoute'])
   });
 }])
 
-.controller('detailsCtrl', ['users', 'deleteStatus', '$scope','$routeParams','$location', function(users, deleteStatus, $scope, $routeParams, $location) {
+.controller('detailsCtrl', ['users', 'deleteStatus', '$scope', '$routeParams','$location', function(users, deleteStatus, $scope, $routeParams, $location ) {
   var userId = $routeParams.id;
 
   //Show loading and error if exist
   $scope.loading = false;
   $scope.error = '';
+  
+  //Hide the edit modal until edit button is pressed
+  $scope.showEditModal = false;
+  $scope.editedUser = {};
+
   
   //display user details by his id
   users.getById(userId)
@@ -38,17 +43,13 @@ angular.module('userMang.details', ['ngRoute'])
     }
   }
 
-  //Hide the edit modal until edit button is pressed
-  $scope.showEditModal = false;
-  $scope.editedUser = {};
-
   $scope.editUser = function() {
 
     //show page loading while edit form is off
     $scope.loading = true;
     $scope.editedUser = angular.copy($scope.user);
     $scope.showEditModal = true;
-    console.log($scope.showEditModal);
+    // modalService.openModal('modal.html', 'detailsCtrl', 'md', $scope.editedUser);
     $scope.loading = false;
   };
   console.log($scope.showEditModal);

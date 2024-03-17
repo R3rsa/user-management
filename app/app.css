@@ -137,3 +137,7 @@ button:hover {
 .pointer {
   cursor: pointer;
 }
+
+.redColor {
+  color: red;
+}

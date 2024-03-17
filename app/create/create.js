@@ -21,6 +21,7 @@ angular.module('userMang.create', ['ngRoute'])
       .then(function() {
         createUser.success = true; //activating banner
         $location.path('/list'); // Redirect to list page after successful creation
+        
       }).catch(function(error) {
         $scope.error = 'error in creating a user!';
         console.log(error);

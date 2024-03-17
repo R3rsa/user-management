@@ -1,0 +1,45 @@
+<!-- Edit User Modal -->
+<div class="modal" ng-show="showEditModal" >
+    <div class="modal-content">
+        <h2>Edit User</h2>
+        <form ng-submit="saveEditedUser()">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">First Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="fname" ng-model="editedUser.first_name" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">Last Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="lname" ng-model="editedUser.last_name" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="email">Email</label>
+            </div>
+            <div class="col-75">
+              <input type="email" id="email" ng-model="editedUser.email" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="avatar">Avatar</label>
+            </div>
+            <div class="col-75">
+              <input type="file" id="avatar" ng-model="editedUser.avatar" accept=".png, .jpeg, .jpg">
+              <img ng-src="{{editedUser.avatar}}" >
+            </div>
+          </div>
+          <div class="row edit-btns">
+            <button type="submit" class="pointer">Save</button>
+            <button ng-click="closeEditModal()" class="pointer">Cancel</button>
+          </div>
+        </form>
+    </div>
+  </div>

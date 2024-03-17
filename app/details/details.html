@@ -6,7 +6,7 @@
   <p>First Name: {{user.first_name}}</p>
   <p>Last Name:  {{user.last_name}}</p>
   <p>Email: {{user.email}}</p>
-  <button ng-click="editUser(user.id)" class="pointer">Edit</button>
+  <button ng-click="editUser()" class="pointer">Edit</button>
   <button ng-click="deleteUser(user.id)" class="pointer">Delete</button>
 </div>
 
@@ -36,7 +36,7 @@
             <label for="email">Email</label>
           </div>
           <div class="col-75">
-            <input type="text" id="email" ng-model="editedUser.email" >
+            <input type="email" id="email" ng-model="editedUser.email" >
           </div>
         </div>
         <div class="row">

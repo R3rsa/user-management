@@ -9,21 +9,19 @@ angular.module('userMang.list', ['ngRoute'])
 
 .controller('ListCtrl', ['users', 'deleteStatus','createUser','$scope', '$location', '$timeout', function(users, deleteStatus,createUser, $scope, $location, $timeout) {
   
-  //display users per page
-  users.getAll().then(function(data) {
-    $scope.userList = data; //users from API call
-    $scope.totalPages = Math.ceil($scope.userList.length / $scope.usersPerPage);
-    $scope.paginatedUsers();
-  });
-
+  $scope.totalPages = 2;
   $scope.currentPage = 1;
   $scope.usersPerPage = 6; // Change this to desired number of users per page
   
-  $scope.paginatedUsers = function() {
-    var begin = (($scope.currentPage - 1) * $scope.usersPerPage); //determining the starting index of the slice.
-    var end = begin + $scope.usersPerPage; //determining the ending index.
-    $scope.filteredUserList = $scope.userList.slice(begin, end); //contains the sliced array of users to be displayed on current page
-  };
+  $scope.filteredUserList = []; // Initialize filteredUserList as an empty array
+
+  // Fetch the initial page of users
+  users.getAll($scope.currentPage).then(function(data) {
+    $scope.userList = data.data;
+    $scope.totalPages = data.total_pages;
+    console.log($scope.totalPages);
+    $scope.updatePage();
+  });
 
   //Check if user was successfully deleted
   if(deleteStatus.success) {
@@ -32,10 +30,10 @@ angular.module('userMang.list', ['ngRoute'])
     $timeout(function() {
         $scope.showDeleteSuccessBanner = false;
     }, 2000);
+    // toaster.success('Haffa', 'User deleted!');
     deleteStatus.success = false; // so we make sure it is activated only when user is deleted
   }
 
-  
   //Check if user was created successfully
   if(createUser.success) {
     $scope.showUserCreationSuccessBanner = true;
@@ -51,6 +49,18 @@ angular.module('userMang.list', ['ngRoute'])
     $location.path('/details/' + userId);
   };
 
+  // Function to fetch the next page of users
+  $scope.fetchNextPage = function() {
+    if ($scope.currentPage <= $scope.totalPages) {
+      
+      users.getAll($scope.currentPage).then(function(data) {
+        console.log("I entered fetch function");
+        $scope.userList = $scope.userList.concat(data.data);
+        $scope.updatePage();
+      });
+    }
+  };
+
   $scope.prevPage = function() {
     if ($scope.currentPage > 1) {
         $scope.currentPage--;
@@ -60,14 +70,14 @@ angular.module('userMang.list', ['ngRoute'])
 
   $scope.nextPage = function() {
     if ($scope.currentPage < $scope.totalPages) {
-        $scope.currentPage++;
-        $scope.updatePage();
+      $scope.currentPage++;
+      $scope.fetchNextPage();
     }
   };
 
   $scope.lastPage = function() {
     $scope.currentPage = $scope.totalPages;
-    $scope.updatePage();
+    $scope.fetchNextPage();
   }
 
   $scope.firstPage = function() {
@@ -78,9 +88,10 @@ angular.module('userMang.list', ['ngRoute'])
   //custom page number
   $scope.setPage = function(page) {
     //making sure we are in a valid range
-    if(page <= $scope.totalPages) {
+    if(page > 0 && page <= $scope.totalPages) {
       $scope.currentPage = page;
-      $scope.updatePage();
+      console.log($scope.currentPage);
+      $scope.fetchNextPage();
     }
   };
 

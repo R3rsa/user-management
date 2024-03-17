@@ -2,25 +2,14 @@
 angular.module('userMang').factory('users', ['$http', function($http) {
     var service = {};
   
-    service.getAll = function() {
-        var users = [];
-
-        function getUsers(page) {
+    service.getAll = function(page) {
             return $http.get('https://reqres.in/api/users?page=' + page)
                 .then(function(response) {
-                    users = users.concat(response.data.data);
-                    if (response.data.total_pages > page) {
-                        return getUsers(page + 1);
-                    } else {
-                        return users;
-                    }
+                    return response.data;
                 })
                 .catch(function(err) {
                     return err;
                 });
-        }
-
-        return getUsers(1);
     };
     
     //retrieve a single user details
