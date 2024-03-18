@@ -4,7 +4,8 @@ var app = angular.module('userMang', [
   'userMang.list',
   'userMang.details',
   'userMang.create',
-  'userMang.version'
+  'userMang.version',
+  'toastr'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('');
